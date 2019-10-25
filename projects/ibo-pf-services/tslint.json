@@ -1,0 +1,17 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "iboPfs",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "ibo-pfs",
+      "kebab-case"
+    ]
+  }
+}

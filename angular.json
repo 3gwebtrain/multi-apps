@@ -1,0 +1,409 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ibo-multi-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "ibo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ibo-multi-app",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ibo-multi-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ibo-multi-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ibo-multi-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "ibo-multi-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ibo-multi-app:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "ibo-library": {
+      "projectType": "library",
+      "root": "projects/ibo-library",
+      "sourceRoot": "projects/ibo-library/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ibo-library/tsconfig.lib.json",
+            "project": "projects/ibo-library/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ibo-library/src/test.ts",
+            "tsConfig": "projects/ibo-library/tsconfig.spec.json",
+            "karmaConfig": "projects/ibo-library/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ibo-library/tsconfig.lib.json",
+              "projects/ibo-library/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ibo-pf-services": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/ibo-pf-services",
+      "sourceRoot": "projects/ibo-pf-services/src",
+      "prefix": "ibo-pfs",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ibo-pf-services",
+            "index": "projects/ibo-pf-services/src/index.html",
+            "main": "projects/ibo-pf-services/src/main.ts",
+            "polyfills": "projects/ibo-pf-services/src/polyfills.ts",
+            "tsConfig": "projects/ibo-pf-services/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/ibo-pf-services/src/favicon.ico",
+              "projects/ibo-pf-services/src/assets"
+            ],
+            "styles": [
+              "projects/ibo-pf-services/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ibo-pf-services/src/environments/environment.ts",
+                  "with": "projects/ibo-pf-services/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ibo-pf-services:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ibo-pf-services:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ibo-pf-services:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ibo-pf-services/src/test.ts",
+            "polyfills": "projects/ibo-pf-services/src/polyfills.ts",
+            "tsConfig": "projects/ibo-pf-services/tsconfig.spec.json",
+            "karmaConfig": "projects/ibo-pf-services/karma.conf.js",
+            "assets": [
+              "projects/ibo-pf-services/src/favicon.ico",
+              "projects/ibo-pf-services/src/assets"
+            ],
+            "styles": [
+              "projects/ibo-pf-services/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ibo-pf-services/tsconfig.app.json",
+              "projects/ibo-pf-services/tsconfig.spec.json",
+              "projects/ibo-pf-services/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ibo-pf-services/e2e/protractor.conf.js",
+            "devServerTarget": "ibo-pf-services:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ibo-pf-services:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "ibo-setup-config": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/ibo-setup-config",
+      "sourceRoot": "projects/ibo-setup-config/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ibo-setup-config",
+            "index": "projects/ibo-setup-config/src/index.html",
+            "main": "projects/ibo-setup-config/src/main.ts",
+            "polyfills": "projects/ibo-setup-config/src/polyfills.ts",
+            "tsConfig": "projects/ibo-setup-config/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/ibo-setup-config/src/favicon.ico",
+              "projects/ibo-setup-config/src/assets"
+            ],
+            "styles": [
+              "projects/ibo-setup-config/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ibo-setup-config/src/environments/environment.ts",
+                  "with": "projects/ibo-setup-config/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ibo-setup-config:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ibo-setup-config:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ibo-setup-config:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ibo-setup-config/src/test.ts",
+            "polyfills": "projects/ibo-setup-config/src/polyfills.ts",
+            "tsConfig": "projects/ibo-setup-config/tsconfig.spec.json",
+            "karmaConfig": "projects/ibo-setup-config/karma.conf.js",
+            "assets": [
+              "projects/ibo-setup-config/src/favicon.ico",
+              "projects/ibo-setup-config/src/assets"
+            ],
+            "styles": [
+              "projects/ibo-setup-config/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ibo-setup-config/tsconfig.app.json",
+              "projects/ibo-setup-config/tsconfig.spec.json",
+              "projects/ibo-setup-config/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ibo-setup-config/e2e/protractor.conf.js",
+            "devServerTarget": "ibo-setup-config:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ibo-setup-config:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ibo-multi-app"
+}
